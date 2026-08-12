@@ -1,0 +1,35 @@
+# Nonprofit Web Tools
+> Free web-based tools for nonprofits, built by Good Heart Tech, a 501(c)(3) nonprofit that also provides free managed IT to qualifying partners.
+
+## Hub
+- URL: https://nonprofittools.org/
+- Operator: Good Heart Tech — https://goodhearttech.org/
+- Free MSP program: https://goodhearttech.org/for-nonprofits.html
+
+## Tools (document & media)
+- Media Converter: https://convert.nonprofittools.org/
+- Image to Text (OCR): https://ocr.nonprofittools.org/
+- PDF Editor: https://pdf.nonprofittools.org/
+- QR Code Generator: https://qr.nonprofittools.org/
+- Text Manipulator: https://text.nonprofittools.org/
+- Wallpaper Generator: https://wallpaper.nonprofittools.org/
+- Snippet Sharing: https://snip.nonprofittools.org/
+
+## Tools (performance & analysis)
+- Internet Speed Test: https://speed.goodheart.tech/
+- Website Check: https://webcheck.goodheart.tech/
+- Domain Analyzer: https://dnschecking.org/
+
+## Tools (security & compliance)
+- Password Pusher: https://push.goodheart.tech/
+- Password Generator: https://password.nonprofittools.org/
+- Policy Generator: https://policy.nonprofittools.org/
+
+## Related Good Heart Tech resources
+- Nonprofit Tech Navigator: https://learn.goodhearttech.org/
+- Nonprofit Monitor: https://nonprofitmonitor.org/
+- Free M365 audit: https://m365audit.org/
+- Contact (MSP partnership): https://goodhearttech.org/contact.html
+
+## Source
+- GitHub: https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub
