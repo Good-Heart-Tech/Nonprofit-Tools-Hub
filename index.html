@@ -33,7 +33,6 @@
     <meta name="twitter:title" content="Nonprofit Web Tools">
     <meta name="twitter:description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
     <link rel="icon" type="image/svg+xml" href="https://graphics.goodhearttech.org/GHT/favicons/favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script
       src="https://js.sentry-cdn.com/f36e2cc0ad45e7e054ca69111b1ecf84.min.js"
@@ -50,12 +49,13 @@
             --accent-blue: #a0ddff;
             --gray: #808080;
             --charcoal: #394053;
+            --hudu-primary: #586CD0;
             --sidebar-width: 320px;
         }
         
         /* Base Styles */
         body {
-            font-family: 'Noto Sans', sans-serif;
+            font-family: ui-sans-serif, system-ui, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -244,13 +244,11 @@
         .sidebar-header img {
             height: 40px;
             margin-bottom: 1rem;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: invert(1);
+            transition: transform 0.3s ease;
         }
 
         .sidebar-header a.logo-link:hover img {
             transform: scale(1.05);
-            filter: invert(1) brightness(0.9);
         }
 
         .sidebar-header h1 {
@@ -288,7 +286,7 @@
 
         .nav-item:hover, .nav-item.active {
             background: var(--card-hover);
-            color: var(--primary-color);
+            color: var(--hudu-primary);
         }
 
         .nav-item i {
@@ -501,16 +499,16 @@
 
         .disclaimer {
             font-size: 0.7rem;
-            color: var(--gray);
+            color: var(--charcoal);
             font-style: italic;
             max-width: 700px;
             margin: 0;
             padding: 0.5rem 0 1rem 0;
             text-align: center;
         }
-        
+
         .disclaimer a {
-            color: var(--gray);
+            color: var(--charcoal);
         }
         
         .disclaimer a:hover {
@@ -558,13 +556,13 @@
         }
 
         .welcome-screen a {
-            color: var(--primary-color);
+            color: var(--hudu-primary);
             text-decoration: underline;
             transition: all 0.3s ease;
         }
 
         .welcome-screen a:not(.welcome-donate-button) {
-            color: var(--primary-color);
+            color: var(--hudu-primary);
             text-decoration: underline;
             transition: all 0.3s ease;
         }
@@ -606,7 +604,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--primary-color);
+            color: var(--hudu-primary);
             font-size: 1.1rem;
             opacity: 0.9;
             animation: fadeInOut 3s ease-in-out infinite;
@@ -902,7 +900,7 @@
         }
 
         .info-box a {
-            color: var(--primary-color);
+            color: var(--hudu-primary);
             text-decoration: none;
             font-weight: 500;
             display: inline-flex;
@@ -941,7 +939,7 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <a href="https://goodhearttech.org" target="_blank" class="logo-link">
-                <img src="https://graphics.goodhearttech.org/GHT-AllWhiteLogo-phishsite.png" alt="Good Heart Tech">
+                <img src="assets/img/ght-lockup.svg" alt="Good Heart Tech">
             </a>
             <h1><a href="#" class="home-link">Nonprofit Web Tools</a></h1>
             </div>

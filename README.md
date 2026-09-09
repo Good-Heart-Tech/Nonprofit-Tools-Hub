@@ -61,7 +61,7 @@ The tools provided are intended for informational purposes only and do not const
 ---
 
 <a href="https://goodhearttech.org/">
-  <img src="https://graphics.goodhearttech.org/GHT-AllWhiteLogo-phishsite.png" alt="Good Heart Tech" width="360">
+  <img src="assets/img/ght-lockup.svg" alt="Good Heart Tech" width="360">
 </a>
 <br><br>
 
