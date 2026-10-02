@@ -33,4 +33,4 @@
 - Contact (MSP partnership): https://goodhearttech.org/contact.html
 
 ## Source
-- GitHub: https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub
+- GitHub: https://github.com/Good-Heart-Tech/Nonprofit-Tools-Hub
