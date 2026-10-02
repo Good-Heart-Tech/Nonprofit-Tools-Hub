@@ -126,16 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuButton.classList.toggle('active');
         mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
 
-        const icon = mobileMenuButton.querySelector('i');
-        if (sidebar.classList.contains('mobile-sidebar-visible')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-            mobileMenuButton.setAttribute('aria-label', 'Close navigation menu');
-        } else {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-            mobileMenuButton.setAttribute('aria-label', 'Open navigation menu');
-        }
+        // CSS swaps the menu and close icons based on the .active class
+        mobileMenuButton.setAttribute('aria-label',
+            sidebar.classList.contains('mobile-sidebar-visible') ? 'Close navigation menu' : 'Open navigation menu');
     };
 
     // Close the mobile menu
@@ -145,9 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuButton.classList.remove('active');
         mobileMenuButton.setAttribute('aria-expanded', 'false');
         mobileMenuButton.setAttribute('aria-label', 'Open navigation menu');
-        const icon = mobileMenuButton.querySelector('i');
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
     };
 
     // ==============================

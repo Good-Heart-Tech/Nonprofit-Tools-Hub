@@ -1,4 +1,4 @@
-# Nonprofit Tools Hub — Agent Guidelines
+# Nonprofit Tools Hub - Agent Guidelines
 
 This file provides context for AI coding agents working on the Nonprofit Tools Hub.
 
@@ -11,15 +11,16 @@ Nonprofit Tools Hub is a **static site** hosted on **Cloudflare Pages**. It serv
 
 ## Tech Stack
 
-- **HTML5** — Single `index.html` with inline CSS
-- **Vanilla JavaScript** — No frameworks; `script.js` handles navigation and UI
-- **Cloudflare Pages** — Static hosting, no build step
+- **HTML5** - Single `index.html` with inline CSS
+- **Vanilla JavaScript** - No frameworks; `script.js` handles navigation and UI
+- **Cloudflare Pages** - Static hosting, no build step
 
 ## Project Structure
 
 ```
 /
 ├── index.html      # Main page: layout, styles, sidebar nav, welcome screen, iframe
+├── assets/         # Good Heart Tech brand kit copies: logo, favicons, og-card.png, ght-variables.css
 ├── script.js       # Navigation, sidebar toggle, mobile menu, iframe loading, deep linking
 ├── sitemap.xml     # Sitemap for SEO
 ├── robots.txt      # Points crawlers to sitemap
@@ -35,10 +36,15 @@ Nonprofit Tools Hub is a **static site** hosted on **Cloudflare Pages**. It serv
 ## Do
 
 - Use vanilla HTML, CSS, and JavaScript only
-- Keep styles in `index.html`; use CSS variables in `:root` for theming
+- Keep styles in `index.html`; colors and fonts come from `assets/ght-variables.css` (`--ght-palette-*`, `--ght-font-*`). Never add new hex values or fonts
+- Follow the Good Heart Tech brand kit (https://github.com/Good-Heart-Tech/Good-Heart-Tech-Branding-Marketing, private): system UI font stack (no Google Fonts), white page, richBlack headings, charcoal body text, huduPrimary for small links, huduLight washes and borders, dark richBlack footer with lightBlue text, 8px button radius
+- White text on `primary` only for large, bold button labels; otherwise use huduPrimary (hover) or richBlack. Never use lightBlue, huduLight, or neutral as text on white
+- Do not rely on color alone (active nav item also has a bar and heavier weight)
+- To refresh the brand, copy the updated `variables.css` from the kit's `tokens/exports/css/` over `assets/ght-variables.css`
 - Preserve existing structure: sidebar, welcome screen, iframe, mobile menu
 - Add new tools by adding `.nav-item` links with `data-url`, `data-label`, and `data-slug` (for embedded tools)
-- Use Font Awesome icons (`fas fa-*`) and Noto Sans font as in the current design
+- Use inline SVG icons from the `<symbol>` sprite at the top of `<body>` (`<svg class="icon"><use href="#i-name"/></svg>`); add a new `<symbol>` for new tools. Font Awesome and Noto Sans were removed
+- Use the official logo and favicon files in `assets/`; do not redraw or recolor the logo
 - Keep the site static and deployable to Cloudflare Pages with no build step
 
 ## Don't
@@ -47,6 +53,7 @@ Nonprofit Tools Hub is a **static site** hosted on **Cloudflare Pages**. It serv
 - Do not set up local dev servers or emulators; assume remote-only workflows
 - Do not change tool URLs without verifying they exist and work
 - Do not remove Sentry or other third-party scripts without explicit approval
+- Do not add em dashes to any text
 - Do not add new heavy dependencies or external libraries without approval
 
 ## Cloudflare Pages Deployment

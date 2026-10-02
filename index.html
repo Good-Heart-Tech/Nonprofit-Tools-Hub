@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nonprofit Web Tools</title>
-    <meta name="description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
+    <meta name="description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, broken link checker, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
     <link rel="canonical" href="https://nonprofittools.org/">
     <script type="application/ld+json">
     {
@@ -12,7 +12,7 @@
       "@type": "WebApplication",
       "name": "Nonprofit Web Tools",
       "url": "https://nonprofittools.org/",
-      "description": "Free web-based tools for nonprofits: PDF, QR codes, DNS checks, password tools, and more.",
+      "description": "Free web-based tools for nonprofits: PDF, QR codes, DNS checks, broken link checks, password tools, and more.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web",
       "isAccessibleForFree": true,
@@ -26,147 +26,125 @@
     }
     </script>
     <meta property="og:title" content="Nonprofit Web Tools">
-    <meta property="og:description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
+    <meta property="og:description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, broken link checker, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
     <meta property="og:url" content="https://nonprofittools.org/">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://nonprofittools.org/assets/og-card.png">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nonprofit Web Tools">
-    <meta name="twitter:description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
-    <link rel="icon" type="image/svg+xml" href="https://graphics.goodhearttech.org/GHT/favicons/favicon.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta name="twitter:description" content="Free nonprofit tech tools: media converter, OCR, PDF editor, QR codes, broken link checker, password generator, policy generator, and more. Built by Good Heart Tech for nonprofits.">
+    <meta name="twitter:image" content="https://nonprofittools.org/assets/og-card.png">
+    <link rel="icon" href="assets/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="assets/ght-variables.css">
     <script
       src="https://js.sentry-cdn.com/f36e2cc0ad45e7e054ca69111b1ecf84.min.js"
       crossorigin="anonymous"
     ></script>
     <style>
+        /*
+         * Colors and fonts come from assets/ght-variables.css (Good Heart Tech brand kit).
+         * Only layout values and aliases live here. Never add a new hex value.
+         */
         :root {
-            --primary-color: #7189ff;
-            --primary-light: #7189FE;
-            --background-color: #FFFFFF;
-            --text-color: #091D20;
-            --card-background: #FFFFFF;
-            --card-hover: #d6ddff;
-            --accent-blue: #a0ddff;
-            --gray: #808080;
-            --charcoal: #394053;
-            --hudu-primary: #586CD0;
             --sidebar-width: 320px;
+            --radius: 8px;
+            --border: 1px solid var(--ght-palette-hudu-light);
         }
-        
-        /* Base Styles */
+
+        * { box-sizing: border-box; }
+
+        /* Base */
         body {
-            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-family: var(--ght-font-family-body);
+            font-weight: var(--ght-font-weight-regular);
+            font-size: var(--ght-font-size-base);
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background: var(--ght-palette-white);
+            color: var(--ght-palette-charcoal);
             display: flex;
             height: 100vh;
             overflow: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            letter-spacing: -0.01em;
         }
 
-        /* Additional font smoothing for specific text elements */
-        h1, h2, h3, p, span, a, .nav-item, .nav-category {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-            letter-spacing: -0.01em;
+        h1, h2, h3, h4 {
+            font-family: var(--ght-font-family-heading);
+            font-weight: var(--ght-font-weight-bold);
+            color: var(--ght-palette-rich-black);
         }
 
-        /* Adjust specific text elements */
-        .nav-item {
-            font-size: 0.95rem;
-            font-weight: 500;
+        a { color: var(--ght-palette-hudu-primary); }
+
+        :focus-visible {
+            outline: 3px solid var(--ght-palette-hudu-primary);
+            outline-offset: 2px;
         }
 
-        .nav-category {
-            font-size: 0.82rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
+        /* Icons (inline SVG sprite, no external icon font) */
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        .sidebar-header h1 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
+        .icon-fill {
+            fill: currentColor;
+            stroke: none;
         }
 
-        .welcome-screen h3 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
+        .icon-ext {
+            width: 0.85em;
+            height: 0.85em;
+            margin-left: 4px;
+            vertical-align: -0.05em;
         }
 
-        .welcome-screen h4 {
-            color: var(--text-color);
-            margin: 0;
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        .nav-item span::after,
-        .sidebar.collapsed .nav-item::after {
-            font-weight: 400;
-            letter-spacing: 0;
-        }
-
-        .footer-button {
-            font-weight: 500;
-            letter-spacing: 0;
-        }
-
-        .welcome-donate-button {
-            font-weight: 500;
-            letter-spacing: 0;
-        }
-
-        .disclaimer {
-            font-weight: 400;
-            letter-spacing: 0;
-        }
-
-        /* Sidebar Styles */
+        /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--card-background);
+            background: var(--ght-palette-white);
             height: 100vh;
             padding: 1rem;
-            box-sizing: border-box;
-            border-right: 1px solid rgba(57, 64, 83, 0.2);
+            border-right: var(--border);
             overflow-y: auto;
             overflow-x: hidden;
             transition: width 0.3s ease;
             position: relative;
             scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) #f0f4ff;
+            scrollbar-color: var(--ght-palette-hudu-primary) var(--ght-palette-white);
             scroll-behavior: smooth;
         }
 
-        /* Webkit scrollbar styles */
-        .sidebar::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: #f0f4ff;
-            border-radius: 4px;
-        }
-
+        .sidebar::-webkit-scrollbar { width: 8px; }
+        .sidebar::-webkit-scrollbar-track { background: var(--ght-palette-white); }
         .sidebar::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
+            background: var(--ght-palette-hudu-primary);
             border-radius: 4px;
-            transition: background 0.3s ease;
         }
 
-        .sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-blue);
-        }
-
-        /* Scroll indicator */
+        /* Fade hint when the nav scrolls */
         .sidebar::after {
             content: '';
             position: fixed;
@@ -174,23 +152,19 @@
             left: 0;
             width: var(--sidebar-width);
             height: 40px;
-            background: linear-gradient(transparent, #FFFFFF);
+            background: linear-gradient(transparent, var(--ght-palette-white));
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .sidebar.has-scroll::after {
-            opacity: 1;
-        }
-
-        .sidebar.collapsed::after {
-            width: 60px;
-        }
+        .sidebar.has-scroll::after { opacity: 1; }
+        .sidebar.collapsed::after { width: 60px; }
 
         .sidebar.collapsed .nav-category,
         .sidebar.collapsed .nav-item span,
         .sidebar.collapsed .sidebar-header h1,
+        .sidebar.collapsed .sidebar-header .logo-link,
         .sidebar.collapsed .footer-button span,
         .sidebar.collapsed .sidebar-footer {
             display: none;
@@ -201,14 +175,20 @@
             justify-content: center;
         }
 
-        /* Toggle Button Styles */
+        .sidebar.collapsed .sidebar-header {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding: 2.5rem 0 0;
+        }
+
+        /* Sidebar toggle (desktop) */
         .toggle-sidebar {
             position: fixed;
             top: 1rem;
             left: calc(var(--sidebar-width) - 16px);
-            background: var(--card-background);
-            border: 1px solid rgba(57, 64, 83, 0.2);
-            color: var(--text-color);
+            background: var(--ght-palette-white);
+            border: var(--border);
+            color: var(--ght-palette-rich-black);
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -218,7 +198,6 @@
             cursor: pointer;
             z-index: 1001;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .sidebar.collapsed + .main-content .toggle-sidebar {
@@ -226,106 +205,107 @@
             transform: rotate(180deg);
         }
 
-        .toggle-sidebar:hover {
-            background: var(--card-hover);
-        }
-
-        .toggle-sidebar i {
-            font-size: 1.2rem;
-        }
+        .toggle-sidebar:hover { background: var(--ght-palette-hudu-light); }
 
         .sidebar-header {
             text-align: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(57, 64, 83, 0.2);
+            padding: 0.75rem 0 1rem;
+            border-bottom: var(--border);
             margin-bottom: 1rem;
+        }
+
+        .sidebar-header .logo-link {
+            display: inline-block;
+            border-radius: 4px;
         }
 
         .sidebar-header img {
+            display: block;
             height: 40px;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-header a.logo-link:hover img {
-            transform: scale(1.05);
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         .sidebar-header h1 {
-            font-size: 1.5rem;
-            margin: 0;
+            font-size: 1.25rem;
+            margin: 0.75rem 0 0;
         }
 
         .sidebar-header a.home-link {
             text-decoration: none;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
+            color: var(--ght-palette-rich-black);
             display: inline-block;
         }
 
         .sidebar-header a.home-link:hover {
-            transform: translateY(-1px);
-            color: var(--charcoal);
+            color: var(--ght-palette-hudu-primary);
+            text-decoration: underline;
         }
 
-        /* Navigation Items */
+        /* Navigation items */
         .nav-item {
             padding: 0.5rem 1rem;
             margin: 0.25rem 0;
-            border-radius: 8px;
+            border-radius: var(--radius);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.2s ease;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            color: var(--text-color);
+            color: var(--ght-palette-charcoal);
+            font-size: 0.95rem;
+            font-weight: var(--ght-font-weight-regular);
             text-decoration: none;
             position: relative;
             white-space: nowrap;
+            border-left: 4px solid transparent;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: var(--card-hover);
-            color: var(--hudu-primary);
+        .nav-item:hover {
+            background: var(--ght-palette-hudu-light);
+            color: var(--ght-palette-rich-black);
         }
 
-        .nav-item i {
-            width: 20px;
-            text-align: center;
+        /* Active state also uses a bar and bold weight so it is not color alone */
+        .nav-item.active {
+            background: var(--ght-palette-hudu-light);
+            color: var(--ght-palette-rich-black);
+            font-weight: var(--ght-font-weight-semibold);
+            border-left-color: var(--ght-palette-hudu-primary);
         }
 
-        /* Tooltip Styles */
-        .nav-item {
-            position: relative;
-        }
+        .nav-item .icon { color: var(--ght-palette-hudu-primary); }
 
+        /* Tooltips */
         .nav-item span::after {
             content: attr(data-tooltip);
             position: fixed;
             left: var(--sidebar-width);
             top: 50%;
             transform: translateY(-50%);
-            background: var(--card-background);
+            background: var(--ght-palette-white);
             padding: 0.75rem 1rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            font-weight: var(--ght-font-weight-regular);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            width: auto;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
             min-width: 200px;
             max-width: 300px;
-            border: 1px solid rgba(57, 64, 83, 0.2);
-            color: var(--text-color);
+            border: var(--border);
+            color: var(--ght-palette-charcoal);
             z-index: 2000;
             pointer-events: none;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 16px rgba(9, 29, 32, 0.12);
             white-space: normal;
             line-height: 1.4;
             margin-left: 16px;
         }
 
-        .nav-item:hover span::after {
+        .nav-item:hover span::after,
+        .nav-item:focus-visible span::after {
             opacity: 1;
             visibility: visible;
         }
@@ -336,21 +316,20 @@
             left: 60px;
             top: 50%;
             transform: translateY(-50%);
-            background: var(--card-background);
+            background: var(--ght-palette-white);
             padding: 0.75rem 1rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
             opacity: 0;
             visibility: hidden;
-            border: 1px solid rgba(57, 64, 83, 0.2);
-            color: var(--text-color);
+            border: var(--border);
+            color: var(--ght-palette-charcoal);
             white-space: nowrap;
             z-index: 2000;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 16px rgba(9, 29, 32, 0.12);
             line-height: 1.4;
-            min-width: fit-content;
             pointer-events: none;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
             margin-left: 16px;
         }
 
@@ -359,57 +338,75 @@
             visibility: visible;
         }
 
-        /* Category Styles */
+        /* Category labels (eyebrow style) */
         .nav-category {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
+            font-weight: var(--ght-font-weight-semibold);
             text-transform: uppercase;
-            color: var(--charcoal);
-            margin: 1rem 0 0.25rem 1rem;
-            letter-spacing: 0.05em;
+            color: var(--ght-palette-hudu-primary);
+            margin: 1.25rem 0 0.25rem 1rem;
+            letter-spacing: 0.06em;
             white-space: nowrap;
         }
 
-        /* Bottom Buttons */
+        /* Sidebar footer: dark bar, light blue text, per brand kit */
         .sidebar-footer {
             margin-top: 2rem;
             padding: 1rem;
-            border-top: 1px solid rgba(57, 64, 83, 0.2);
+            background: var(--ght-palette-rich-black);
+            color: var(--ght-palette-light-blue);
+            border-radius: var(--radius);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .sidebar-footer p { margin: 0 0 0.75rem; }
+
+        .footer-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .footer-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: background 0.2s ease, color 0.2s ease;
+            font-size: 0.9rem;
+            font-weight: var(--ght-font-weight-semibold);
         }
 
+        .footer-button:focus-visible { outline-color: var(--ght-palette-light-blue); }
+
         .github-button {
-            background: #f0f4ff;
-            color: var(--text-color);
-            border: 1px solid rgba(57, 64, 83, 0.2);
+            background: transparent;
+            color: var(--ght-palette-light-blue);
+            border: 1px solid var(--ght-palette-light-blue);
         }
 
         .github-button:hover {
-            background: var(--card-hover);
+            background: var(--ght-palette-light-blue);
+            color: var(--ght-palette-rich-black);
         }
 
+        /* Rich black on primary is an approved pair (5.56:1) */
         .donate-button {
-            background: var(--primary-color);
-            color: #FFFFFF;
+            background: var(--ght-palette-primary);
+            color: var(--ght-palette-rich-black);
+            border: 1px solid var(--ght-palette-primary);
         }
 
         .donate-button:hover {
-            background: #5b73ff;
+            background: var(--ght-palette-white);
+            border-color: var(--ght-palette-white);
         }
 
-        /* Main Content Area */
+        /* Main content */
         .main-content {
             flex: 1;
             height: 100vh;
@@ -417,19 +414,17 @@
             position: relative;
         }
 
-        .mobile-menu-button {
-            display: none;  /* Hide by default on desktop */
-        }
+        .mobile-menu-button { display: none; }
 
         #content-frame {
             width: 100%;
             height: 100%;
             border: none;
-            background: var(--background-color);
+            background: var(--ght-palette-white);
         }
 
         .welcome-screen {
-            padding: 3rem 2rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
             text-align: center;
             height: 100%;
             display: flex;
@@ -442,29 +437,29 @@
             gap: 2rem;
         }
 
+        .welcome-header { margin-bottom: 0.5rem; }
+
+        .welcome-eyebrow {
+            display: block;
+            margin: 0 0 0.5rem;
+            font-size: 0.85rem;
+            font-weight: var(--ght-font-weight-semibold);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ght-palette-hudu-primary);
+        }
+
         .welcome-screen h2 {
             margin: 0;
-            color: var(--text-color);
             font-size: 2.5rem;
             line-height: 1.2;
         }
 
-        .welcome-screen h3 {
-            color: var(--primary-color);
-            margin: 0.5rem 0 0 0;
-            font-size: 2.2rem;
-        }
-
-        .welcome-screen h4 {
-            color: var(--text-color);
+        .welcome-screen p {
             margin: 0;
-            font-size: 1.6rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .welcome-header {
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
         .about-row {
@@ -476,126 +471,53 @@
             padding: 0.5rem 0;
             flex-direction: row-reverse;
         }
-        
-        .opensource-commitment {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            max-width: 800px;
-            padding: 0.5rem 0;
-            text-align: center;
-            flex-direction: column;
-        }
 
-        .opensource-commitment p {
-            font-size: 0.9rem;
-            color: var(--text-color);
-            max-width: 700px;
-            line-height: 1.6;
-            margin: 0;
-            text-align: center;
-        }
+        .about-row p { font-size: 1.15rem; }
 
-        .disclaimer {
-            font-size: 0.7rem;
-            color: var(--charcoal);
-            font-style: italic;
-            max-width: 700px;
-            margin: 0;
-            padding: 0.5rem 0 1rem 0;
-            text-align: center;
-        }
-
-        .disclaimer a {
-            color: var(--charcoal);
-        }
-        
-        .disclaimer a:hover {
-            color: var(--primary-color);
-        }
-        
-        .github-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-background);
-            color: var(--text-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(57, 64, 83, 0.2);
-            flex-shrink: 0;
-        }
-        
-        .github-link i {
-            font-size: 1.8rem;
-        }
-        
-        .github-link:hover {
-            transform: translateY(-2px);
-            color: var(--primary-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .welcome-screen p {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--text-color);
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        .about-row p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 0;
-            color: var(--text-color);
-        }
-
-        .welcome-screen a {
-            color: var(--hudu-primary);
-            text-decoration: underline;
-            transition: all 0.3s ease;
-        }
-
-        .welcome-screen a:not(.welcome-donate-button) {
-            color: var(--hudu-primary);
-            text-decoration: underline;
-            transition: all 0.3s ease;
-        }
-
-        .welcome-screen a:not(.welcome-donate-button):hover {
-            color: var(--charcoal);
-        }
-
+        /* Large, bold label so white on primary meets 3:1 (brand kit rule) */
         .welcome-donate-button {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            background: var(--primary-color);
-            color: #FFFFFF !important;
+            font-size: 1.2rem;
+            font-weight: var(--ght-font-weight-bold);
+            background: var(--ght-palette-primary);
+            color: var(--ght-palette-white) !important;
             text-decoration: none !important;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            border-radius: var(--radius);
+            transition: background 0.2s ease;
+            flex-shrink: 0;
         }
 
-        .welcome-donate-button:hover {
-            background: #5b73ff;
+        .welcome-donate-button:hover { background: var(--ght-palette-hudu-primary); }
+
+        .github-link a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--ght-palette-white);
+            color: var(--ght-palette-rich-black);
+            border: var(--border);
+            transition: background 0.2s ease;
         }
 
-        .welcome-donate-button i {
-            font-size: 1rem;
+        .github-link a:hover { background: var(--ght-palette-hudu-light); }
+
+        .github-link .icon { width: 1.6rem; height: 1.6rem; }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            max-width: 700px;
+            margin: 0;
+            padding: 0.5rem 0 1rem;
+            text-align: center;
         }
 
-        /* Curved Arrow Styles */
+        /* Pointer toward the sidebar. Text uses hudu primary, arrow is a graphic. */
         .try-tools-prompt {
             position: absolute;
             left: 2rem;
@@ -604,60 +526,70 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--hudu-primary);
+            color: var(--ght-palette-hudu-primary);
             font-size: 1.1rem;
-            opacity: 0.9;
-            animation: fadeInOut 3s ease-in-out infinite;
+            font-weight: var(--ght-font-weight-semibold);
+            animation: nudge 3s ease-in-out infinite;
         }
 
-        .curved-arrow {
-            position: relative;
-            width: 40px;
-            height: 40px;
+        .try-tools-prompt .icon { width: 1.75rem; height: 1.75rem; color: var(--ght-palette-primary); }
+
+        @keyframes nudge {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-10px); }
         }
 
-        .curved-arrow::before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 3px solid var(--primary-color);
-            border-right: none;
-            border-bottom: none;
-            left: 0;
-            top: 50%;
-            border-radius: 100% 0 0 0;
-            transform: translateY(-50%) rotate(-45deg);
-        }
-
-        .curved-arrow::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-left: 3px solid var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
-            left: 2px;
-            top: 50%;
-            transform: translateY(-50%) rotate(45deg);
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.5; transform: translateY(-50%) translateX(0); }
-            50% { opacity: 1; transform: translateY(-50%) translateX(-10px); }
+        @media (prefers-reduced-motion: reduce) {
+            .try-tools-prompt { animation: none; }
+            .sidebar, .toggle-sidebar, .nav-item { transition: none; }
         }
 
         @media (max-width: 1200px) {
-            .try-tools-prompt {
-                display: none;
-            }
+            .try-tools-prompt { display: none; }
         }
 
-        /* Mobile Styles */
+        /* Info card */
+        .info-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: var(--border);
+            border-radius: var(--radius);
+            background: var(--ght-palette-white);
+            max-width: 600px;
+            width: 100%;
+            font-size: 0.95rem;
+            color: var(--ght-palette-charcoal);
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .info-box .icon-well {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background: var(--ght-palette-hudu-light);
+            color: var(--ght-palette-rich-black);
+            flex-shrink: 0;
+        }
+
+        .info-box a {
+            font-weight: var(--ght-font-weight-semibold);
+            margin-left: 0.25rem;
+            white-space: nowrap;
+        }
+
+        /* Mobile */
+        .mobile-menu-button .icon-close { display: none; }
+        .mobile-menu-button.active .icon-open { display: none; }
+        .mobile-menu-button.active .icon-close { display: block; }
+
         @media (max-width: 768px) {
-            .toggle-sidebar {
-                display: none !important;
-            }
+            .toggle-sidebar { display: none !important; }
 
             .sidebar {
                 position: fixed;
@@ -668,24 +600,23 @@
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
                 z-index: 99998;
-                background: var(--card-background);
                 padding-top: 4rem;
             }
 
-            .sidebar.mobile-sidebar-visible {
-                transform: translateX(0);
-            }
+            .sidebar.mobile-sidebar-visible { transform: translateX(0); }
 
-            /* Mobile menu button */
+            .sidebar::after { width: 100%; }
+
             .mobile-menu-button {
-                display: flex;  /* Show only on mobile */
+                display: flex;
                 position: fixed;
                 top: 1rem;
                 right: 1rem;
                 width: 44px;
                 height: 44px;
-                background: var(--card-background);
-                border: 1px solid rgba(57, 64, 83, 0.2);
+                background: var(--ght-palette-white);
+                color: var(--ght-palette-rich-black);
+                border: var(--border);
                 border-radius: 50%;
                 align-items: center;
                 justify-content: center;
@@ -694,97 +625,32 @@
                 -webkit-tap-highlight-color: transparent;
             }
 
-            /* Mobile menu icon */
-            .mobile-menu-button i {
-                position: relative;
-                color: var(--text-color);
-                font-size: 1.5rem;
-                transition: all 0.3s ease;
-                z-index: 100000;
-            }
+            .mobile-menu-button .icon { width: 1.5rem; height: 1.5rem; }
 
-            .mobile-menu-button i.fa-xmark {
-                color: var(--primary-color);
-            }
+            .mobile-menu-button.active { background: var(--ght-palette-hudu-light); }
 
-            .mobile-menu-button.active {
-                border-color: var(--primary-color);
-                background: var(--card-hover);
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-            }
-
-            .mobile-menu-button.active i {
-                color: var(--primary-color);
-            }
-
-            /* Ensure content stays below the mobile menu */
-            .main-content {
-                z-index: 99997;
-            }
-            
             .welcome-screen {
                 padding: 4rem 1rem 1.5rem;
-                height: 100%;
-                overflow-y: auto;
+                gap: 1.5rem;
             }
 
-            .sidebar-header {
-                padding: 0.75rem 0;
-                margin-bottom: 0.75rem;
-            }
-
-            .sidebar-header img {
-                height: 32px;
-                margin-bottom: 0.75rem;
-            }
-
-            .sidebar-header h1 {
-                font-size: 1.25rem;
-            }
-
-            .nav-item {
-                padding: 0.75rem;
-                font-size: 0.9rem;
-            }
-
-            .nav-category {
-                font-size: 0.75rem;
-                margin: 0.75rem 0 0.25rem 0.75rem;
-            }
-
-            .nav-item span::after,
-            .sidebar.collapsed .nav-item::after {
-                position: absolute;
-                left: 0;
-                top: 100%;
-                transform: none;
-                margin-left: 0;
-                width: calc(100% - 2rem);
-                min-width: auto;
-                max-width: none;
-                font-size: 0.8rem;
-                z-index: 2001;
-            }
-
-            .sidebar-footer {
-                margin-top: 1rem;
-                padding: 0.75rem;
-            }
-
-            .footer-button {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .welcome-screen h3 {
+            .welcome-screen h2 {
                 font-size: 1.8rem;
                 line-height: 1.3;
             }
 
-            .welcome-screen h4 {
-                font-size: 1.2rem;
-                line-height: 1.3;
+            .sidebar-header { padding: 0.5rem 0 0.75rem; margin-bottom: 0.75rem; }
+            .sidebar-header img { height: 32px; }
+            .sidebar-header h1 { font-size: 1.15rem; }
+
+            .nav-item {
+                padding: 0.75rem;
+                font-size: 0.95rem;
             }
+
+            .nav-category { font-size: 0.78rem; margin: 1rem 0 0.25rem 0.75rem; }
+
+            .sidebar-footer { margin-top: 1rem; padding: 0.75rem; }
 
             .about-row {
                 flex-direction: column;
@@ -793,289 +659,208 @@
                 width: 100%;
             }
 
+            .about-row p { font-size: 1rem; }
+
             .welcome-donate-button {
                 width: 100%;
                 justify-content: center;
-                padding: 0.75rem;
             }
 
-            .opensource-commitment {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 0;
-                width: 100%;
-            }
+            .try-tools-prompt { display: none; }
 
-            .opensource-commitment p {
-                font-size: 0.85rem;
-                text-align: center;
-            }
-
-            .disclaimer {
-                font-size: 0.7rem;
-                padding: 0.5rem 0;
-            }
-
-            .try-tools-prompt {
-                display: none;
-            }
-
-            /* Adjust tooltip position for mobile */
-            .nav-item {
-                position: relative;
-            }
-
-            /* Hide tooltips on mobile */
+            /* Tooltips are hover only, so hide them on touch */
             .nav-item span::after,
             .sidebar.collapsed .nav-item::after {
                 display: none;
             }
 
-            .about-row p {
-                font-size: 1rem;
-            }
-
-            .info-box {
-                font-size: 0.9rem;
-                padding: 0.75rem;
-                text-align: left;
-                gap: 0.5rem;
-            }
+            .info-box { font-size: 0.9rem; padding: 0.75rem; }
         }
 
-        /* Additional mobile optimizations for very small screens */
         @media (max-width: 380px) {
-            .sidebar-header h1 {
-                font-size: 1.1rem;
-            }
-
-            .nav-item {
-                font-size: 0.85rem;
-            }
-
-            .welcome-screen h3 {
-                font-size: 1.3rem;
-            }
-
-            .welcome-screen h4 {
-                font-size: 1.1rem;
-            }
-
-            .welcome-screen p {
-                font-size: 0.85rem;
-            }
-
-            .footer-button {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Add styles for the info box */
-        .info-box {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            border: 1px solid var(--accent-blue);
-            border-radius: 8px;
-            background: rgba(160, 221, 255, 0.25);
-            max-width: 600px;
-            width: 100%;
-            box-sizing: border-box;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            margin: 0 auto;
-        }
-
-        .info-box i.fa-info-circle {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .info-box .content {
-            display: inline;
-            white-space: normal;
-        }
-
-        .info-box a {
-            color: var(--hudu-primary);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            margin-left: 0.5rem;
-        }
-
-        .info-box a i {
-            font-size: 0.8em;
-            }
-
-        .info-box a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .info-box {
-                font-size: 0.9rem;
-                padding: 0.75rem;
-                text-align: left;
-                gap: 0.5rem;
-            }
-
-            .info-box .content {
-                display: inline;
-            }
-
-            .info-box a {
-                margin-left: 0.25rem;
-            }
+            .sidebar-header h1 { font-size: 1.05rem; }
+            .nav-item { font-size: 0.9rem; }
+            .welcome-screen h2 { font-size: 1.5rem; }
+            .welcome-screen p { font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Icon sprite: simple stroke icons, referenced with <use href="#i-name"> -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+        <symbol id="i-convert" viewBox="0 0 24 24"><path d="M4 8h14l-3-3M20 16H6l3 3"/></symbol>
+        <symbol id="i-ocr" viewBox="0 0 24 24"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M8 9h8M8 12h8M8 15h5"/></symbol>
+        <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4"/></symbol>
+        <symbol id="i-qr" viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 14h2v2M14 18h2v2M18 18h2v2"/></symbol>
+        <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6V5h14v1M12 5v14M9 19h6"/></symbol>
+        <symbol id="i-image" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 17l5-5 4 4 3-3 4 4"/><circle cx="9" cy="9.5" r="1.5"/></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
+        <symbol id="i-speed" viewBox="0 0 24 24"><path d="M4 18a9 9 0 1 1 16 0M12 18l4-6M12 7v2M6.3 10l1.4 1.4M17.7 10l-1.4 1.4"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+        <symbol id="i-unlink" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1M8 3v2M3 8h2M16 21v-2M21 16h-2"/></symbol>
+        <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></symbol>
+        <symbol id="i-asterisk" viewBox="0 0 24 24"><path d="M12 4v16M5 8l14 8M19 8L5 16"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 4-4"/></symbol>
+        <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></symbol>
+        <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+        <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+        <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+        <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H5M11 6l-6 6 6 6"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></symbol>
+    </svg>
+
     <div class="sidebar">
         <div class="sidebar-header">
-            <a href="https://goodhearttech.org" target="_blank" class="logo-link">
-                <img src="assets/img/ght-lockup.svg" alt="Good Heart Tech">
+            <a href="https://goodhearttech.org" target="_blank" rel="noopener" class="logo-link">
+                <img src="assets/goodhearttech-logo.png" alt="Good Heart Tech" width="280" height="40">
             </a>
             <h1><a href="#" class="home-link">Nonprofit Web Tools</a></h1>
-            </div>
-        <nav>
+        </div>
+        <nav aria-label="Tools">
             <div class="nav-category">Document & Media Tools</div>
             <a href="https://convert.nonprofittools.org/" class="nav-item" data-url="https://convert.nonprofittools.org/" data-label="Media Converter" data-slug="convert">
-                <i class="fas fa-file-import"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-convert"/></svg>
                 <span data-tooltip="Convert images, audio, and archive files between different formats">Media Converter</span>
             </a>
             <a href="https://ocr.nonprofittools.org/" class="nav-item" data-url="https://ocr.nonprofittools.org/" data-label="Image to Text (OCR)" data-slug="ocr">
-                <i class="fas fa-image"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-ocr"/></svg>
                 <span data-tooltip="Convert your images to editable text using OCR technology">Image to Text (OCR)</span>
             </a>
             <a href="https://pdf.nonprofittools.org/" class="nav-item" target="_blank" rel="noopener noreferrer" data-url="https://pdf.nonprofittools.org/" data-label="PDF Editor">
-                <i class="fas fa-file-pdf"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-pdf"/></svg>
                 <span data-tooltip="Comprehensive PDF editing and manipulation tools">
                     PDF Editor
-                    <i class="fa-solid fa-up-right-from-square" style="margin-left: 4px; font-size: 0.8em;"></i>
+                    <svg class="icon icon-ext" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span>
                 </span>
             </a>
             <a href="https://qr.nonprofittools.org/" class="nav-item" data-url="https://qr.nonprofittools.org/" data-label="QR Code Generator" data-slug="qr">
-                <i class="fas fa-qrcode"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-qr"/></svg>
                 <span data-tooltip="Generate QR codes for URLs and WiFi networks">QR Code Generator</span>
             </a>
             <a href="https://text.nonprofittools.org/" class="nav-item" data-url="https://text.nonprofittools.org/" data-label="Text Manipulator" data-slug="text">
-                <i class="fas fa-text-width"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-text"/></svg>
                 <span data-tooltip="A powerful, web-based tool for text manipulation and editing">Text Manipulator</span>
             </a>
             <a href="https://wallpaper.nonprofittools.org/" class="nav-item" data-url="https://wallpaper.nonprofittools.org/" data-label="Wallpaper Generator" data-slug="wallpaper">
-                <i class="fas fa-image"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-image"/></svg>
                 <span data-tooltip="Create custom wallpapers with your organization's logo">Wallpaper Generator</span>
             </a>
             <a href="https://snip.nonprofittools.org/" class="nav-item" data-url="https://snip.nonprofittools.org/" data-label="Snippet Sharing" data-slug="snip">
-                <i class="fa-solid fa-share"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-share"/></svg>
                 <span data-tooltip="Quickly share text with others.">Snippet Sharing</span>
             </a>
 
             <div class="nav-category">Performance & Analysis</div>
             <a href="https://speed.goodheart.tech/" class="nav-item" data-url="https://speed.goodheart.tech/" data-label="Internet Speed Test" data-slug="speed">
-                <i class="fas fa-tachometer-alt"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-speed"/></svg>
                 <span data-tooltip="Check your internet connection speed and performance">Internet Speed Test</span>
             </a>
             <a href="https://webcheck.goodheart.tech/" class="nav-item" data-url="https://webcheck.goodheart.tech/" data-label="Website Check" data-slug="webcheck">
-                <i class="fas fa-check-circle"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
                 <span data-tooltip="Analyze website security, performance, and technical metrics">Website Check</span>
             </a>
+            <a href="https://links.nonprofittools.org/" class="nav-item" data-url="https://links.nonprofittools.org/" data-label="Broken Link Checker" data-slug="links">
+                <svg class="icon" aria-hidden="true"><use href="#i-unlink"/></svg>
+                <span data-tooltip="Scan your website for broken links so visitors never hit a dead end">Broken Link Checker</span>
+            </a>
             <a href="https://dnschecking.org/" class="nav-item" data-url="https://dnschecking.org" data-label="Domain Analyzer" data-slug="dns">
-                <i class="fas fa-heart-circle-check"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
                 <span data-tooltip="Analyze domain security, deliverability, and DNS health">Domain Analyzer</span>
             </a>
 
             <div class="nav-category">Security & Compliance</div>
-            <a href="https://push.goodheart.tech/" class="nav-item" target="_blank" data-label="Password Pusher">
-                <i class="fas fa-key"></i>
+            <a href="https://push.goodheart.tech/" class="nav-item" target="_blank" rel="noopener noreferrer" data-label="Password Pusher">
+                <svg class="icon" aria-hidden="true"><use href="#i-key"/></svg>
                 <span data-tooltip="Securely share passwords with automatic expiration">
                     Password Pusher
-                    <i class="fa-solid fa-up-right-from-square" style="margin-left: 4px; font-size: 0.8em;"></i>
+                    <svg class="icon icon-ext" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span>
                 </span>
             </a>
             <a href="https://password.nonprofittools.org/" class="nav-item" data-url="https://password.nonprofittools.org/" data-label="Password Generator" data-slug="password">
-                <i class="fas fa-asterisk"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-asterisk"/></svg>
                 <span data-tooltip="Create strong, secure passwords with our password generator">Password Generator</span>
             </a>
             <a href="https://policy.nonprofittools.org/" class="nav-item" data-url="https://policy.nonprofittools.org/" data-label="Policy Generator" data-slug="policy">
-                <i class="fas fa-file-contract"></i>
+                <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
                 <span data-tooltip="Generate privacy policies, acceptable use policies, and other essential documents">Policy Generator</span>
             </a>
 
             <div class="nav-category">Informational Resources</div>
-            <a href="https://learn.goodhearttech.org/" class="nav-item" target="_blank" data-label="Nonprofit Tech Navigator">
-                <i class="fas fa-lightbulb"></i>
+            <a href="https://learn.goodhearttech.org/" class="nav-item" target="_blank" rel="noopener noreferrer" data-label="Nonprofit Tech Navigator">
+                <svg class="icon" aria-hidden="true"><use href="#i-bulb"/></svg>
                 <span data-tooltip="Access our comprehensive collection of nonprofit technology resources and guides">
                     Nonprofit Tech Navigator
-                    <i class="fa-solid fa-up-right-from-square" style="margin-left: 4px; font-size: 0.8em;"></i>
+                    <svg class="icon icon-ext" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span>
                 </span>
             </a>
         </nav>
         <div class="sidebar-footer">
-            <a href="https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub" target="_blank" class="footer-button github-button">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
-            <a href="https://goodhearttech.org/donate/" target="_blank" class="footer-button donate-button">
-                <i class="fas fa-heart"></i>
-                <span>Donate</span>
-            </a>
+            <p>Published by Good Heart Tech.</p>
+            <div class="footer-buttons">
+                <a href="https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub" target="_blank" rel="noopener" class="footer-button github-button">
+                    <svg class="icon icon-fill" aria-hidden="true"><use href="#i-github"/></svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="https://goodhearttech.org/donate/" target="_blank" rel="noopener" class="footer-button donate-button">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+                    <span>Donate</span>
+                </a>
+            </div>
         </div>
     </div>
     <main class="main-content">
         <div class="toggle-sidebar" role="button" tabindex="0" aria-label="Toggle sidebar">
-            <i class="fas fa-chevron-left"></i>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
         </div>
         <div class="mobile-menu-button" role="button" tabindex="0" aria-label="Open navigation menu" aria-expanded="false">
-            <i class="fas fa-bars"></i>
+            <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
+            <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
         </div>
         <div class="welcome-screen" id="welcome-screen">
             <div class="try-tools-prompt">
-                <div class="curved-arrow"></div>
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg>
                 <span>Try our tools!</span>
             </div>
             <div class="welcome-header">
-                <h3>Free Nonprofit Tech Tools</h3>
+                <span class="welcome-eyebrow">Nonprofit Web Tools</span>
+                <h2>Free Nonprofit Tech Tools</h2>
             </div>
-            
+
             <div class="info-box">
-                <i class="fas fa-info-circle"></i>
+                <span class="icon-well"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></span>
                 <div class="content">
                     Looking for recommendations, guides, and other info about nonprofit tech?
-                    <a href="https://learn.goodhearttech.org/" target="_blank">
-                        Launch Nonprofit Tech Navigator
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <a href="https://learn.goodhearttech.org/" target="_blank" rel="noopener noreferrer">
+                        Launch Nonprofit Tech Navigator<svg class="icon icon-ext" aria-hidden="true"><use href="#i-external"/></svg><span class="sr-only"> (opens in a new tab)</span>
                     </a>
                 </div>
             </div>
-            
+
             <div class="about-row">
-                <a href="https://goodhearttech.org/donate/" target="_blank" class="welcome-donate-button">
-                    <i class="fas fa-heart"></i>
+                <a href="https://goodhearttech.org/donate/" target="_blank" rel="noopener" class="welcome-donate-button">
+                    <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
                     Donate
                 </a>
-                <p><a href="https://goodhearttech.org" target="_blank">Good Heart Tech</a> is a 501(c)(3) nonprofit that provides <a href="https://goodhearttech.org/for-nonprofits.html" target="_blank">free managed IT (MSP) services</a> to qualifying nonprofit partners and builds free tools like this hub.</p>
+                <p><a href="https://goodhearttech.org" target="_blank" rel="noopener">Good Heart Tech</a> is a 501(c)(3) nonprofit that provides <a href="https://goodhearttech.org/for-nonprofits.html" target="_blank" rel="noopener">free managed IT (MSP) services</a> to qualifying nonprofit partners and builds free tools like this hub.</p>
             </div>
-            
+
             <div class="github-link">
-                <a href="https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub" target="_blank">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/Good-Heart-Technology/Nonprofit-Tools-Hub" target="_blank" rel="noopener" aria-label="Nonprofit Tools Hub on GitHub">
+                    <svg class="icon icon-fill" aria-hidden="true"><use href="#i-github"/></svg>
                 </a>
             </div>
 
             <div class="disclaimer">
-                The tools provided in the Nonprofit Web Tools are offered 'as is' without any guarantees or warranties, express or implied, and may be modified, discontinued, or become nonfunctional at any time without notice. View our <a href="https://goodhearttech.org/privacy-policy" target="_blank">Privacy Policy</a>.
+                The tools provided in the Nonprofit Web Tools are offered 'as is' without any guarantees or warranties, express or implied, and may be modified, discontinued, or become nonfunctional at any time without notice. View our <a href="https://goodhearttech.org/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.
             </div>
         </div>
-        <iframe 
-            id="content-frame" 
-            style="display: none;" 
+        <iframe
+            id="content-frame"
+            style="display: none;"
             title="Tool Content"
             allow="clipboard-read; clipboard-write"
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-modals allow-popups-to-escape-sandbox">

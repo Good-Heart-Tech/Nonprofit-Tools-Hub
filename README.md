@@ -22,6 +22,7 @@ This app was developed and hosted by [Good Heart Tech](https://goodhearttech.org
   - Domain Health Analyzer
   - Internet Speed Test
   - Website Security & Performance Check
+  - Broken Link Checker
 
 - **Security & Compliance**
   - Password Generator
