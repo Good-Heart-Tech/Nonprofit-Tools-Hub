@@ -50,7 +50,7 @@
         :root {
             --sidebar-width: 320px;
             --radius: 8px;
-            --border: 1px solid var(--ght-palette-hudu-light);
+            --border: 1px solid var(--ght-palette-primary-tint);
         }
 
         * { box-sizing: border-box; }
@@ -78,10 +78,10 @@
             color: var(--ght-palette-rich-black);
         }
 
-        a { color: var(--ght-palette-hudu-primary); }
+        a { color: var(--ght-palette-primary-dark); }
 
         :focus-visible {
-            outline: 3px solid var(--ght-palette-hudu-primary);
+            outline: 3px solid var(--ght-palette-primary-dark);
             outline-offset: 2px;
         }
 
@@ -133,14 +133,14 @@
             transition: width 0.3s ease;
             position: relative;
             scrollbar-width: thin;
-            scrollbar-color: var(--ght-palette-hudu-primary) var(--ght-palette-white);
+            scrollbar-color: var(--ght-palette-primary-dark) var(--ght-palette-white);
             scroll-behavior: smooth;
         }
 
         .sidebar::-webkit-scrollbar { width: 8px; }
         .sidebar::-webkit-scrollbar-track { background: var(--ght-palette-white); }
         .sidebar::-webkit-scrollbar-thumb {
-            background: var(--ght-palette-hudu-primary);
+            background: var(--ght-palette-primary-dark);
             border-radius: 4px;
         }
 
@@ -205,7 +205,7 @@
             transform: rotate(180deg);
         }
 
-        .toggle-sidebar:hover { background: var(--ght-palette-hudu-light); }
+        .toggle-sidebar:hover { background: var(--ght-palette-primary-tint); }
 
         .sidebar-header {
             text-align: center;
@@ -239,7 +239,7 @@
         }
 
         .sidebar-header a.home-link:hover {
-            color: var(--ght-palette-hudu-primary);
+            color: var(--ght-palette-primary-dark);
             text-decoration: underline;
         }
 
@@ -263,19 +263,19 @@
         }
 
         .nav-item:hover {
-            background: var(--ght-palette-hudu-light);
+            background: var(--ght-palette-primary-tint);
             color: var(--ght-palette-rich-black);
         }
 
         /* Active state also uses a bar and bold weight so it is not color alone */
         .nav-item.active {
-            background: var(--ght-palette-hudu-light);
+            background: var(--ght-palette-primary-tint);
             color: var(--ght-palette-rich-black);
             font-weight: var(--ght-font-weight-semibold);
-            border-left-color: var(--ght-palette-hudu-primary);
+            border-left-color: var(--ght-palette-primary-dark);
         }
 
-        .nav-item .icon { color: var(--ght-palette-hudu-primary); }
+        .nav-item .icon { color: var(--ght-palette-primary-dark); }
 
         /* Tooltips */
         .nav-item span::after {
@@ -343,7 +343,7 @@
             font-size: 0.78rem;
             font-weight: var(--ght-font-weight-semibold);
             text-transform: uppercase;
-            color: var(--ght-palette-hudu-primary);
+            color: var(--ght-palette-primary-dark);
             margin: 1.25rem 0 0.25rem 1rem;
             letter-spacing: 0.06em;
             white-space: nowrap;
@@ -446,7 +446,7 @@
             font-weight: var(--ght-font-weight-semibold);
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--ght-palette-hudu-primary);
+            color: var(--ght-palette-primary-dark);
         }
 
         .welcome-screen h2 {
@@ -490,7 +490,7 @@
             flex-shrink: 0;
         }
 
-        .welcome-donate-button:hover { background: var(--ght-palette-hudu-primary); }
+        .welcome-donate-button:hover { background: var(--ght-palette-primary-dark); }
 
         .github-link a {
             display: flex;
@@ -505,7 +505,7 @@
             transition: background 0.2s ease;
         }
 
-        .github-link a:hover { background: var(--ght-palette-hudu-light); }
+        .github-link a:hover { background: var(--ght-palette-primary-tint); }
 
         .github-link .icon { width: 1.6rem; height: 1.6rem; }
 
@@ -517,7 +517,7 @@
             text-align: center;
         }
 
-        /* Pointer toward the sidebar. Text uses hudu primary, arrow is a graphic. */
+        /* Pointer toward the sidebar. Text uses primary dark, arrow is a graphic. */
         .try-tools-prompt {
             position: absolute;
             left: 2rem;
@@ -526,7 +526,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--ght-palette-hudu-primary);
+            color: var(--ght-palette-primary-dark);
             font-size: 1.1rem;
             font-weight: var(--ght-font-weight-semibold);
             animation: nudge 3s ease-in-out infinite;
@@ -572,7 +572,7 @@
             width: 40px;
             height: 40px;
             border-radius: var(--radius);
-            background: var(--ght-palette-hudu-light);
+            background: var(--ght-palette-primary-tint);
             color: var(--ght-palette-rich-black);
             flex-shrink: 0;
         }
@@ -627,7 +627,7 @@
 
             .mobile-menu-button .icon { width: 1.5rem; height: 1.5rem; }
 
-            .mobile-menu-button.active { background: var(--ght-palette-hudu-light); }
+            .mobile-menu-button.active { background: var(--ght-palette-primary-tint); }
 
             .welcome-screen {
                 padding: 4rem 1rem 1.5rem;

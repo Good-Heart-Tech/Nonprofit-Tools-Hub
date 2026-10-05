@@ -37,8 +37,8 @@ Nonprofit Tools Hub is a **static site** hosted on **Cloudflare Pages**. It serv
 
 - Use vanilla HTML, CSS, and JavaScript only
 - Keep styles in `index.html`; colors and fonts come from `assets/ght-variables.css` (`--ght-palette-*`, `--ght-font-*`). Never add new hex values or fonts
-- Follow the Good Heart Tech brand kit (https://github.com/Good-Heart-Tech/Good-Heart-Tech-Branding-Marketing, private): system UI font stack (no Google Fonts), white page, richBlack headings, charcoal body text, huduPrimary for small links, huduLight washes and borders, dark richBlack footer with lightBlue text, 8px button radius
-- White text on `primary` only for large, bold button labels; otherwise use huduPrimary (hover) or richBlack. Never use lightBlue, huduLight, or neutral as text on white
+- Follow the Good Heart Tech brand kit (https://github.com/Good-Heart-Tech/Good-Heart-Tech-Branding-Marketing, private): system UI font stack (no Google Fonts), white page, richBlack headings, charcoal body text, primaryDark for small links, primaryTint washes and borders, dark richBlack footer with lightBlue text, 8px button radius
+- White text on `primary` only for large, bold button labels; otherwise use primaryDark (hover) or richBlack. Never use lightBlue, primaryTint, or neutral as text on white
 - Do not rely on color alone (active nav item also has a bar and heavier weight)
 - To refresh the brand, copy the updated `variables.css` from the kit's `tokens/exports/css/` over `assets/ght-variables.css`
 - Preserve existing structure: sidebar, welcome screen, iframe, mobile menu
